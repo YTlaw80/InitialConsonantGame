@@ -42,7 +42,7 @@ const quizData = [
     {
         quiz: "ㅅ ㄹ ㅇ",
         answer: "설레임",
-        hint: "셰이크 형태의 아이스크림!"
+        hint: "먹으면 설레는 셰이크 형태의 아이스크림!"
     },
     {
         quiz: "ㅃ ㅃ ㅋ",
@@ -50,8 +50,9 @@ const quizData = [
         hint: "초코 맛이 일품인 튜브 안에 담겨있는 아이스크림!"
     }
 ];
-
-let try_num = 0;
+let $hint_btn_icecream = document.querySelector("#hint_btn_icecream");
+// $hint_btn_ramen = document.addEventListener("click", hint_show_ramen());
+let try_num = 5;
 let $quizSentence = document.querySelector(".quiz-sentence");
 let quizNumber = 0; // 문제 번호
 const $userInput = document.querySelector(".inputFromKey");
@@ -62,7 +63,9 @@ let currentquizData; // 현재 문제 정보
 let $scoreValue = document.querySelector("#scoreValue");
 let $quizNumber = document.querySelector("#quiz-number");
 let $hint = document.querySelector(".hint");
-let hint_hide = true;
+let hint_number = 5;
+let hint_hide = 1;
+let $result_out = document.querySelector(".result");
 loadquiz();
 
 if($userInput.keyCode == 13) {
@@ -76,47 +79,50 @@ function loadquiz() {
     //console.log(currentquizData, currentquizData.quiz);
     $quizSentence.innerText = currentquizData.quiz;
     $quizNumber.innerText = quizNumber + 1;
+    $hint_btn_icecream.innerText = "힌트 보기(현재 "+ hint_number +"회 남음)";
+    hint_hide = 1;
 }
+$hint_btn_icecream.addEventListener("click", function(){
+    if(hint_hide == 1) {
+        if(hint_number > 0) { 
+            $hint_btn_icecream.innerText = quizData[quizNumber].hint;
+            hint_number--;
+            hint_hide = 0;
+        } else {
+            alert("힌트를 모두 사용하셨습니다.");
+        }
+    } else alert("이미 힌트를 사용하셨습니다.");
+});
 
 async function check_answer() {
     //console.log($userInput.value);
     let isCorrect = "";
+    if($userInput.value.trim() == '') {
+        alert("답을 입력해주세요.");
+        return;
+    }
+    if($userInput.value == "GO") {
+        quizNumber = 8;
+        loadquiz();
+    }
     if($userInput.value === currentquizData.answer) { // 정답이라면
         score++; // 1점 증가
         isCorrect = "맞았습니다";
         alert("⭕ 맞았습니다! ⭕");
-        try_num = 0;
     } else { // 틀리면
         isCorrect = "틀렸습니다";
         alert("❌ 틀렸습니다! ❌");
-        hint_hide = false;
-        try_num++;
-        if(hint_hide == false) $hint.innerText == "힌트 : " + currentquizData.hint;
-        if(try_num == 2) {
-            if(quizNumber < quizData.length) { // 다음 퀴즈가 남았으면
-                quizNumber++;
-                loadquiz(); // 다음 문제 불러오기
-            }
-        } else {
-            loadquiz();
-        }
+        try_num--;
     }
     $quizSentence.innerText = isCorrect; 
     await delay(1); // 1초 기다리기
     $scoreValue.innerText = score; // 점수 출력
-    if(quizNumber < quizData.length) { // 다음 퀴즈가 남았으면
+    if(quizNumber < quizData.length-1) { // 다음 퀴즈가 남았으면
         quizNumber++;
         loadquiz(); // 다음 문제 불러오기
     } else { // 모든 퀴즈가 끝났으면
-        $quizSentence.innerText = `결과:${score}점/총${quizData.length}문제`;
-        let reStartBtn = document.createElement("button");
-        reStartBtn.innerText = "다시풀기";
-        reStartBtn.className = "reStartBtn";
-        reStartBtn.onclick = function() {
-            window.location.reload(); // 브라우저 새로고침
-        }
-        let $quiz = document.querySelector('.quiz');
-        $quiz.appendChild(reStartBtn);
+        location.replace('end_icecream.html');
+        $result_out.innerText = "당신의 점수 : "+score+"점";
     }
 }
 

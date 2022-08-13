@@ -22,7 +22,7 @@ const quizData = [
     {
         quiz: "ㅇ ㄱ ㅈ ㅅ ㅂ ㅁ",
         answer: "육개장사발면",
-        hint: "육개장 국물 베이스에 사발면을 넣어 만든 국내 판매 5위(2022기준) 라면!"
+        hint: "라면 중 제일 대표적인 육개장 라면!"
     },
     {
         quiz: "ㅇ ㅅ ㅌ ㅁ",
@@ -66,6 +66,7 @@ let $quizNumber = document.querySelector("#quiz-number");
 let $hint = document.querySelector(".hint");
 let hint_number = 5;
 let hint_hide = 1;
+let $result_out = document.querySelector(".result");
 loadquiz();
 
 if($userInput.keyCode == 13) {
@@ -76,10 +77,10 @@ function loadquiz() {
     $userInput.value = ""; // input창 비우기
     $userInput.focus();
     currentquizData = quizData[quizNumber];
-    //console.log(currentquizData, currentquizData.quiz);
+    console.log(currentquizData, currentquizData.quiz, quizNumber);
     $quizSentence.innerText = currentquizData.quiz;
     $quizNumber.innerText = quizNumber + 1;
-    $hint_btn_ramen.innerText = "힌트 보기";
+    $hint_btn_ramen.innerText = "힌트 보기(현재 "+ hint_number +"회 남음)";
     hint_hide = 1;
 }
 $hint_btn_ramen.addEventListener("click", function(){
@@ -89,7 +90,7 @@ $hint_btn_ramen.addEventListener("click", function(){
             hint_number--;
             hint_hide = 0;
         } else {
-            alert("힌트를 모두 사용하셨습니다!");
+            alert("힌트를 모두 사용하셨습니다.");
         }
     } else alert("이미 힌트를 사용하셨습니다.");
 });
@@ -97,12 +98,19 @@ $hint_btn_ramen.addEventListener("click", function(){
 async function check_answer() {
     //console.log($userInput.value);
     let isCorrect = "";
+    if($userInput.value.trim() == '') {
+        alert("답을 입력해주세요.");
+        return;
+    }
+    if($userInput.value == "GO") {
+        quizNumber = 8;
+        loadquiz();
+    }
     if($userInput.value === currentquizData.answer) { // 정답이라면
         score++; // 1점 증가
         isCorrect = "맞았습니다";
         alert("⭕ 맞았습니다! ⭕");
-    } if($userInput == " ") 
-    else { // 틀리면
+    } else { // 틀리면
         isCorrect = "틀렸습니다";
         alert("❌ 틀렸습니다! ❌");
         try_num--;
@@ -110,19 +118,13 @@ async function check_answer() {
     $quizSentence.innerText = isCorrect; 
     await delay(1); // 1초 기다리기
     $scoreValue.innerText = score; // 점수 출력
-    if(quizNumber < quizData.length) { // 다음 퀴즈가 남았으면
+    if(quizNumber < quizData.length-1) { // 다음 퀴즈가 남았으면
         quizNumber++;
         loadquiz(); // 다음 문제 불러오기
     } else { // 모든 퀴즈가 끝났으면
-        $quizSentence.innerText = `결과:${score}점/총${quizData.length}문제`;
-        let reStartBtn = document.createElement("button");
-        reStartBtn.innerText = "다시풀기";
-        reStartBtn.className = "reStartBtn";
-        reStartBtn.onclick = function() {
-            window.location.reload(); // 브라우저 새로고침
-        }
-        let $quiz = document.querySelector('.quiz');
-        $quiz.appendChild(reStartBtn);
+        location.replace('end_ramen.html');
+        console.log($result_out);
+        $result_out.innerText = "당신의 점수 : "+ score +"점";
     }
 }
 

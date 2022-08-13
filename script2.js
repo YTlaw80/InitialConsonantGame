@@ -1,59 +1,57 @@
 const quizData = [
     {
-        quiz: "ㅅ ㄹ ㅁ",
-        answer: "신라면",
-        hint: "매울 신! (辛)"
+        quiz: "ㅌㄱㄷ",
+        answer: "투게더",
+        hint: "다 같이 먹어야 더 맛있는 바닐라 아이스크림!"
     },
     {
-        quiz: "ㅈ ㄹ ㅁ",
-        answer: "진라면",
-        hint: "두 가지 맛을 맘대로 골라먹는 맛있는 라면!"
+        quiz: "ㅂ ㅇ ㅆ ㅁ ㅋ",
+        answer: "붕어싸만코",
+        hint: "붕어빵의 아이스크림 버전!"
     },
     {
-        quiz: "ㅉ ㅍ ㄱ ㅌ",
-        answer: "짜파게티",
-        hint: "우리나라의 대중적인 짜장라면!"
+        quiz: "ㅎ ㄱ ㄷ ㅈ",
+        answer: "하겐다즈",
+        hint: "여러 맛이 있는 미국 브랜드의 고오오급 아이스크림!"
     },
     {
-        quiz: "ㄴ ㄱ ㄹ",
-        answer: "너구리",
-        hint: "동물 이름!"
+        quiz: "ㅇ ㄷ ㅋ",
+        answer: "월드콘",
+        hint: "월드컵 때 특히 인기 많았던 아이스크림 콘!"
     },
     {
-        quiz: "ㅇ ㄱ ㅈ ㅅ ㅂ ㅁ",
-        answer: "육개장사발면",
-        hint: "육개장 국물 베이스에 사발면을 넣어 만든 국내 판매 5위(2022기준) 라면!"
+        quiz: "ㅁ ㄹ ㄴ",
+        answer: "메로나",
+        hint: "메론 맛이 나는 연두색 막대 아이스크림!"
     },
     {
-        quiz: "ㅇ ㅅ ㅌ ㅁ",
-        answer: "안성탕면",
-        hint: "왠지 안성의 맛이 나는 것 같은 라면!"
+        quiz: "ㅃ ㅃ ㄹ",
+        answer: "빵빠레",
+        hint: "두 가지 맛(초코, 바닐라)이 있는 아이스크림!"
     },
     {
-        quiz: "ㅍ ㄷ ㅂ ㅂ ㅁ",
-        answer: "팔도비빔면",
-        hint: "팔도에서 만든 비벼 먹는 라면!"
+        quiz: "ㄷ ㅂ ㅂ ㅇ ㅋ",
+        answer: "더블비얀코",
+        hint: "딸기 맛이 더블로 느껴지는 맛의 아이스크림!"
     },
     {
-        quiz: "ㅅ ㅇ ㄹ ㅁ",
-        answer: "삼양라면",
-        hint: "세 마리의 양이라는 뜻을 가진 삼양회사 대표 라면!"
+        quiz: "ㅃ ㄸ ㅇ",
+        answer: "빵또아",
+        hint: "빵 또 아이스크림이란 뜻으로 빵 속에 아이스크림이 들어있는 샌드위치 같은 아이스크림!"
     },
     {
-        quiz: "ㅂ ㄷ ㅂ ㅇ ㅁ",
-        answer: "불닭볶음면",
-        hint: "불처럼 매운 볶아 먹는(?) 라면!"
+        quiz: "ㅅ ㄹ ㅇ",
+        answer: "설레임",
+        hint: "셰이크 형태의 아이스크림!"
     },
     {
-        quiz: "ㅈ ㅉ ㅃ",
-        answer: "진짬뽕",
-        hint: "진한 맛이 느껴지는 짬뽕!"
+        quiz: "ㅃ ㅃ ㅋ",
+        answer: "빠삐코",
+        hint: "초코 맛이 일품인 튜브 안에 담겨있는 아이스크림!"
     }
 ];
 
-let $hint_btn_ramen = document.querySelector("#hint_btn_ramen");
-// $hint_btn_ramen = document.addEventListener("click", hint_show_ramen());
-let try_num = 5;
+let try_num = 0;
 let $quizSentence = document.querySelector(".quiz-sentence");
 let quizNumber = 0; // 문제 번호
 const $userInput = document.querySelector(".inputFromKey");
@@ -64,8 +62,7 @@ let currentquizData; // 현재 문제 정보
 let $scoreValue = document.querySelector("#scoreValue");
 let $quizNumber = document.querySelector("#quiz-number");
 let $hint = document.querySelector(".hint");
-let hint_number = 5;
-let hint_hide = 1;
+let hint_hide = true;
 loadquiz();
 
 if($userInput.keyCode == 13) {
@@ -79,20 +76,7 @@ function loadquiz() {
     //console.log(currentquizData, currentquizData.quiz);
     $quizSentence.innerText = currentquizData.quiz;
     $quizNumber.innerText = quizNumber + 1;
-    $hint_btn_ramen.innerText = "힌트 보기";
-    hint_hide = 1;
 }
-$hint_btn_ramen.addEventListener("click", function(){
-    if(hint_hide == 1) {
-        if(hint_number > 0) { 
-            $hint_btn_ramen.innerText = quizData[quizNumber].hint;
-            hint_number--;
-            hint_hide = 0;
-        } else {
-            alert("힌트를 모두 사용하셨습니다!");
-        }
-    } else alert("이미 힌트를 사용하셨습니다.");
-});
 
 async function check_answer() {
     //console.log($userInput.value);
@@ -101,11 +85,21 @@ async function check_answer() {
         score++; // 1점 증가
         isCorrect = "맞았습니다";
         alert("⭕ 맞았습니다! ⭕");
-    } if($userInput == " ") 
-    else { // 틀리면
+        try_num = 0;
+    } else { // 틀리면
         isCorrect = "틀렸습니다";
         alert("❌ 틀렸습니다! ❌");
-        try_num--;
+        hint_hide = false;
+        try_num++;
+        if(hint_hide == false) $hint.innerText == "힌트 : " + currentquizData.hint;
+        if(try_num == 2) {
+            if(quizNumber < quizData.length) { // 다음 퀴즈가 남았으면
+                quizNumber++;
+                loadquiz(); // 다음 문제 불러오기
+            }
+        } else {
+            loadquiz();
+        }
     }
     $quizSentence.innerText = isCorrect; 
     await delay(1); // 1초 기다리기

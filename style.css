@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic+Coding&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic+Coding&family=Sunflower&display=swap');
 
 body {
     font-family: 'Jua', sans-serif;
@@ -55,7 +56,17 @@ body {
     color: rgb(228, 228, 228);
 }
 .hint {
-    font-size: 1.5rem;
+    font-size: 2rem;
+    margin-top: 25px;
+    border: 3px solid red;
+    background-color: yellow;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.hint:hover {
+    transition: 0.5s;
+    border: 3px solid rgb(150, 0, 0);
+    background-color: rgb(145, 145, 0);
 }
 .reStartBtn {
     margin-bottom: 10px;
@@ -66,4 +77,34 @@ body {
 footer {
     font-size: 1.5rem;
     margin-top: 100px;
+}
+#cate_title {
+    text-align: center;
+    font-size: 2.25rem;
+}
+.select_cate {
+    background-color: aqua;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-top: 50px;
+    font-family: 'Jua', sans-serif;
+    font-family: 'Nanum Gothic Coding', monospace;
+    font-family: 'Sunflower', sans-serif;
+}
+.select_cate a {
+    text-decoration: none;
+    color: black;
+}
+.select_cate a:hover {
+    color: cadetblue;
+    transition: 0.25s;
+}
+#icecream_title {
+    font-size: 2.63187rem;
+    color: darkblue;
+}
+#icecream_wrapper {
+    background-image: url(icecream_bgi.png);
+    max-width: 1500px;
+    max-height: 1500px;
 }

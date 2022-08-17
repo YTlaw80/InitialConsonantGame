@@ -1,6 +1,6 @@
 const quizData = [
     {
-        quiz: "ㅌㄱㄷ",
+        quiz: "ㅌ ㄱ ㄷ",
         answer: "투게더",
         hint: "다 같이 먹어야 더 맛있는 바닐라 아이스크림!"
     },
@@ -50,6 +50,7 @@ const quizData = [
         hint: "초코 맛이 일품인 튜브 안에 담겨있는 아이스크림!"
     }
 ];
+quizData.sort( () => Math.random() - 0.5);
 let $hint_btn_icecream = document.querySelector("#hint_btn_icecream");
 // $hint_btn_ramen = document.addEventListener("click", hint_show_ramen());
 let try_num = 5;

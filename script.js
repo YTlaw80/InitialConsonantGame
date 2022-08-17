@@ -50,7 +50,7 @@ const quizData = [
         hint: "진한 맛이 느껴지는 짬뽕!"
     }
 ];
-
+quizData.sort( () => Math.random() - 0.5);
 let $hint_btn_ramen = document.querySelector("#hint_btn_ramen");
 // $hint_btn_ramen = document.addEventListener("click", hint_show_ramen());
 let try_num = 5;

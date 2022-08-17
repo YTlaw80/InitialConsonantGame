@@ -57,7 +57,8 @@ let $quizSentence = document.querySelector(".quiz-sentence");
 let quizNumber = 0; // 문제 번호
 const $userInput = document.querySelector(".inputFromKey");
 const $ok_btn = document.querySelector("#ok-btn");
-$ok_btn.addEventListener('click', check_answer);
+// end_icecream.html at null
+$ok_btn?.addEventListener('click', check_answer);
 let score = 0; // 점수
 let currentquizData; // 현재 문제 정보
 let $scoreValue = document.querySelector("#scoreValue");
@@ -67,12 +68,39 @@ let hint_number = 5;
 let hint_hide = 1;
 let $result_out = document.querySelector(".result");
 loadquiz();
-
-if($userInput.keyCode == 13) {
+// end_icecream.html at null 
+if($userInput?.keyCode == 13) {
     check_answer();
 }
 
+// read parameters 
+var Request = function() {  
+    this.getParameter = function(name) {  
+        var rtnval = '';  
+        var nowAddress = unescape(location.href);  
+        var parameters = (nowAddress.slice(nowAddress.indexOf('?') + 1,  
+                nowAddress.length)).split('&');  
+        for (var i = 0; i < parameters.length; i++) {  
+            var varName = parameters[i].split('=')[0];  
+            if (varName.toUpperCase() == name.toUpperCase()) {  
+                rtnval = parameters[i].split('=')[1];  
+                break;  
+            }  
+        }  
+        return rtnval;  
+    }  
+}  
+var request = new Request();  
+// for end_icecream.html
+var scoreParam = request.getParameter("score");
+if( scoreParam != ''){
+    score = parseInt(scoreParam); 
+    $result_out.innerText = "당신의 점수 : "+score+"점";
+}
+
 function loadquiz() {
+    if($userInput == null)
+        return;
     $userInput.value = ""; // input창 비우기
     $userInput.focus();
     currentquizData = quizData[quizNumber];
@@ -82,7 +110,8 @@ function loadquiz() {
     $hint_btn_icecream.innerText = "힌트 보기(현재 "+ hint_number +"회 남음)";
     hint_hide = 1;
 }
-$hint_btn_icecream.addEventListener("click", function(){
+// end_icecream is null
+$hint_btn_icecream?.addEventListener("click", function(){
     if(hint_hide == 1) {
         if(hint_number > 0) { 
             $hint_btn_icecream.innerText = quizData[quizNumber].hint;
@@ -121,7 +150,8 @@ async function check_answer() {
         quizNumber++;
         loadquiz(); // 다음 문제 불러오기
     } else { // 모든 퀴즈가 끝났으면
-        location.replace('end_icecream.html');
+        // send to score parameter
+        location.replace('end_icecream.html?score='+score);
         $result_out.innerText = "당신의 점수 : "+score+"점";
     }
 }

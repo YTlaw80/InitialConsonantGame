@@ -96,6 +96,10 @@ footer {
     text-decoration: none;
     color: purple;
 }
+.footer_a:hover {
+    color: rgb(70, 0, 70);
+    transition: 0.5s;
+}
 #cate_title {
     text-align: center;
     font-size: 3rem;

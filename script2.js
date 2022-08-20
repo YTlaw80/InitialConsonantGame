@@ -48,6 +48,16 @@ const quizData = [
         quiz: "ㅃ ㅃ ㅋ",
         answer: "빠삐코",
         hint: "초코 맛이 일품인 튜브 안에 담겨있는 아이스크림!"
+    },
+    {
+        quiz: "ㅈ ㅅ ㅂ",
+        answer: "죠스바",
+        hint: "상어 모양 막대 아이스크림!"
+    },
+    {
+        quiz: "ㅅ ㅋ ㄹ ㅂ",
+        answer: "스크류바",
+        hint: "딸기 맛과 사과 맛이 좋은 막대 아이스크림!"
     }
 ];
 quizData.sort( () => Math.random() - 0.5);

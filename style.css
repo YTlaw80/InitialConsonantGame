@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Cute+Font&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Cute+Font&family=Single+Day&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Cute+Font&family=Dongle&family=Single+Day&display=swap');
 
 body {
     font-family: 'Jua', sans-serif;
@@ -115,6 +116,10 @@ footer {
     height: 75px;
 }
 .select_cate a {
+    font-family: 'Black Han Sans', sans-serif;
+    font-family: 'Cute Font', cursive;
+    font-family: 'Dongle', sans-serif;
+    font-family: 'Single Day', cursive;
     text-decoration: none;
     color: black;
 }

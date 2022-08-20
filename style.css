@@ -91,6 +91,8 @@ footer {
     margin-top: 100px;
     font-family: 'Black Han Sans', sans-serif;
     color: blue;
+    font-style: none;
+    
 }
 #cate_title {
     text-align: center;

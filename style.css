@@ -93,6 +93,10 @@ footer {
     text-decoration: none;
     color: blue;
 }
+footer a {
+    text-decoration: none;
+    color: blue;
+}
 #cate_title {
     text-align: center;
     font-size: 3rem;

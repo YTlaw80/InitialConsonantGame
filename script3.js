@@ -85,14 +85,14 @@ if($userInput?.keyCode == 13) {
 }
 
 // read parameters 
-var Request = function() {  
+let Request = function() {  
     this.getParameter = function(name) {  
-        var rtnval = '';  
-        var nowAddress = unescape(location.href);  
-        var parameters = (nowAddress.slice(nowAddress.indexOf('?') + 1,  
+        let rtnval = '';  
+        let nowAddress = unescape(location.href);  
+        let parameters = (nowAddress.slice(nowAddress.indexOf('?') + 1,  
                 nowAddress.length)).split('&');  
-        for (var i = 0; i < parameters.length; i++) {  
-            var varName = parameters[i].split('=')[0];  
+        for (let i = 0; i < parameters.length; i++) {  
+            let varName = parameters[i].split('=')[0];  
             if (varName.toUpperCase() == name.toUpperCase()) {  
                 rtnval = parameters[i].split('=')[1];  
                 break;  
@@ -101,9 +101,9 @@ var Request = function() {
         return rtnval;  
     }  
 }  
-var request = new Request();  
+let request = new Request();  
 // for end_snack.html
-var scoreParam = request.getParameter("score");
+let scoreParam = request.getParameter("score");
 if( scoreParam != ''){
     score = parseInt(scoreParam); 
     $result_out.innerText = "당신의 점수 : "+score+"점";

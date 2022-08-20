@@ -120,15 +120,12 @@ footer {
 }
 #icecream_wrapper {
     background-image: url(icecream_bgi.png);
-    background-size: cover;
 }
 #ramen_wrapper {
     background-image: url(ramen_bgi.jpg);
-    background-size: cover;
 }
 #snack_wrapper {
     background-image: url(snack_bgi.jpg);
-    background-size: cover;
 }
 .go_category {
     background-color: aqua;

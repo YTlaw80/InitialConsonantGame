@@ -147,7 +147,7 @@ async function check_answer() {
     $quizSentence.innerText = isCorrect; 
     await delay(1); // 1초 기다리기
     $scoreValue.innerText = score; // 점수 출력
-    if(quizNumber < quizData.length-1) { // 다음 퀴즈가 남았으면
+    if(quizNumber < 9) { // 다음 퀴즈가 남았으면
         quizNumber++;
         loadquiz(); // 다음 문제 불러오기
     } else { // 모든 퀴즈가 끝났으면

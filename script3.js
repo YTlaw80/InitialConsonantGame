@@ -5,9 +5,9 @@ const quizData = [
         hint: "야구에서 홈런치고 먹는 과자!"
     },
     {
-        quiz: "ㅇ ㅇ ㅅ (오예스 X)",
-        answer: "에이스",
-        hint: "바삭바삭 소리가 크래커의 에이스답게 크게 나는 과자!"
+        quiz: "ㅇ ㅇ ㅅ",
+        answer: "오예스",
+        hint: "촉촉한 초콜릿 미니 케이크!"
     },
     {
         quiz: "ㅋ ㅅ ㅌ ㄷ",
@@ -59,7 +59,7 @@ const quizData = [
         answer: "양파링",
         hint: "양파가 동글동글 썰려 반지 모양이 되버린 과자!"
     }
-];
+]
 quizData.sort( () => Math.random() - 0.5);
 let $hint_btn_snack = document.querySelector("#hint_btn_snack");
 // $hint_btn_snack = document.addEventListener("click", hint_show_snack());

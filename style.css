@@ -92,7 +92,7 @@ footer {
     font-family: 'Black Han Sans', sans-serif;
     color: blue;
 }
-footer a {
+.footer_a {
     text-decoration: none;
     color: purple;
 }
